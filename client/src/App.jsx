@@ -1,6 +1,4 @@
-
-function App() {
-
+function App () {
   return (
     <>
       <h1>FrameWork React</h1>
