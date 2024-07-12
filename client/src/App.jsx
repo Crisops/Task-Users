@@ -1,8 +1,6 @@
 function App () {
   return (
-    <>
-      <h1>FrameWork React</h1>
-    </>
+    <div className='bg-zinc-900 h-dvh' />
   )
 }
 
