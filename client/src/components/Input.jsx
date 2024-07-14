@@ -7,7 +7,7 @@ function Input ({ type, placeholder, handleInput, error }) {
         placeholder={placeholder}
         {...handleInput}
       />
-      {error && <p className='text-red-500'>{error.message}</p>}
+      {error && <p className='text-red-500 text-xs font-bold font-serif'>{error.message}</p>}
     </>
   )
 }
