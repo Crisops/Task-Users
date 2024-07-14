@@ -7,7 +7,7 @@ function Register () {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const onSubmit = handleSubmit(async (data) => {
-    const user = await fetchAuth(URL_API, data)
+    const user = await fetchAuth(`${URL_API}/register`, data)
     console.log(user)
   })
 
