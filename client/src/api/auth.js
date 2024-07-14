@@ -1,13 +1,15 @@
 export function fetchAuth (url, data) {
   return new Promise((resolve, reject) => {
-    const headers = {
-      Method: 'POST',
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Body: JSON.stringify(data)
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json'
+      }
     }
 
-    fetch(url, headers)
+    fetch(url, options)
       .then(response => response.json())
       .then(user => resolve(user))
       .catch(error => reject(error))
