@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
-import { fetchAuth } from '../api/auth'
+import { fetchAuth, verifyToken } from '../api/auth'
 import { URL_API } from '../../config'
+import Cookies from 'js-cookie'
 
 export const AuthContext = createContext()
 
@@ -16,6 +17,25 @@ export const AuthProvider = ({ children }) => {
 
     return () => clearTimeout(timeout)
   }, [error])
+
+  useEffect(() => {
+    const accessToken = Cookies.get()
+    if (!accessToken.access_token) return setIsAuthenticated(false)
+
+    async function fetchValidateToken () {
+      try {
+        const res = await verifyToken(`${URL_API}/verify`)
+        if (res.message) throw res.message
+        setUser(res)
+        setIsAuthenticated(true)
+      } catch (error) {
+        setUser(false)
+        setIsAuthenticated(false)
+      }
+    }
+
+    fetchValidateToken()
+  }, [])
 
   const signup = async (user) => {
     try {
