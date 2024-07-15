@@ -42,7 +42,7 @@ function Register () {
           error={errors.password}
         />
         <button className='bg-sky-500 text-white font-serif px-1 py-2 transition-colors hover:bg-sky-600' type='submit'>Register</button>
-        <p className='flex justify-between p-2 text-white'>Don't have an account? <Link to='/login' className='text-sky-500 font-normal font-sans'>Login</Link></p>
+        <p className='flex justify-between p-2 text-white'>Already have an account?<Link to='/login' className='text-sky-500 font-normal font-sans'>Login</Link></p>
       </form>
       {registerError &&
 
