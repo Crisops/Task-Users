@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import Input from '../components/Input'
 import { useAuth } from '../hooks/useAuth'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ErrorAuth from '../components/ErrorAuth'
 
 function Register () {
@@ -42,11 +42,12 @@ function Register () {
           error={errors.password}
         />
         <button className='bg-sky-500 text-white font-serif px-1 py-2 transition-colors hover:bg-sky-600' type='submit'>Register</button>
+        <p className='flex justify-between p-2 text-white'>Don't have an account? <Link to='/login' className='text-sky-500 font-normal font-sans'>Login</Link></p>
       </form>
       {registerError &&
 
-        registerError.map(message => {
-          return <ErrorAuth key={message} registerError={message} />
+        registerError.map((message, index) => {
+          return <ErrorAuth key={index} registerError={message} />
         })}
     </div>
 
