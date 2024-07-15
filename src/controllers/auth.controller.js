@@ -41,11 +41,11 @@ export const login = async (req, res) => {
   try {
     const userFind = await User.findOne({ email })
 
-    if (!userFind) return res.status(404).json({ error: 'User not found' })
+    if (!userFind) return res.status(404).json({ error: ['Email does not exist'] })
 
     const isMatch = await bcrypt.compare(password, userFind.password)
 
-    if (!isMatch) return res.status(401).json({ error: 'Invalid password' })
+    if (!isMatch) return res.status(401).json({ error: ['Invalid password'] })
 
     const token = await createAccessToken({ id: userFind._id })
 
@@ -56,7 +56,7 @@ export const login = async (req, res) => {
       email: userFind.email
     })
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    res.status(500).json({ error })
   }
 }
 
