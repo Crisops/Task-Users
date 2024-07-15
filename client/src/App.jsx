@@ -3,6 +3,8 @@ import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import { AuthProvider } from './context/AuthContext'
+import RouteProtected from './pages/RouteProtected'
+import Tasks from './pages/Tasks'
 
 function App () {
   return (
@@ -13,7 +15,9 @@ function App () {
             <Route path='/' element={<Home />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/tasks' element={<h1>Tasks</h1>} />
+            <Route element={<RouteProtected />}>
+              <Route path='/tasks' element={<Tasks />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
