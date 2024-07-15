@@ -78,3 +78,17 @@ export const profile = async (req, res) => {
     email
   })
 }
+
+export const verifyToken = async (req, res) => {
+  const { session } = req
+
+  const userFound = await User.findById(session.id)
+
+  if (!userFound) return res.status(404).json({ message: 'User not found' })
+
+  return res.status(200).json({
+    id: userFound._id,
+    username: userFound.username,
+    email: userFound.email
+  })
+}
