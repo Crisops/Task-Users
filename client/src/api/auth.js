@@ -32,3 +32,15 @@ export function verifyToken (url) {
       .catch(error => reject(error))
   })
 }
+
+export function fetchLogOut (url) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'POST'
+    }
+
+    fetch(url, options)
+      .then(response => resolve(response))
+      .catch(error => reject(error))
+  })
+}
