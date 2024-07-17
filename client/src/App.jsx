@@ -9,7 +9,7 @@ import CreateTask from './pages/CreateTask'
 
 function App () {
   return (
-    <section className='bg-[#0A0E12] w- full h-screen overflow-hidden'>
+    <section className='bg-[#0A0E12] h-screen overflow-y-auto'>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
