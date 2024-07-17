@@ -5,10 +5,11 @@ import Login from './pages/Login'
 import { AuthProvider } from './context/AuthContext'
 import RouteProtected from './pages/RouteProtected'
 import Tasks from './pages/Tasks'
+import CreateTask from './pages/CreateTask'
 
 function App () {
   return (
-    <section className='bg-zinc-900 w- full h-dvh'>
+    <section className='bg-[#0A0E12] w- full h-screen overflow-hidden'>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
@@ -17,6 +18,7 @@ function App () {
             <Route path='/login' element={<Login />} />
             <Route element={<RouteProtected />}>
               <Route path='/tasks' element={<Tasks />} />
+              <Route path='/add-task' element={<CreateTask />} />
             </Route>
           </Routes>
         </BrowserRouter>
