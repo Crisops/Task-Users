@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { fetchAuth, verifyToken } from '../api/auth'
+import { fetchAuth, fetchLogOut, verifyToken } from '../api/auth'
 import { URL_API } from '../../config'
 import Cookies from 'js-cookie'
 
@@ -59,7 +59,18 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const logout = async () => {
+    try {
+      Cookies.remove('access_token')
+      await fetchLogOut(`${URL_API}/logout`)
+      setUser(null)
+      setIsAuthenticated(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ signup, signin, user, isAuthenticated, error }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signup, signin, logout, user, isAuthenticated, error }}>{children}</AuthContext.Provider>
   )
 }
