@@ -41,10 +41,12 @@ export const updateTask = async (req, res) => {
 }
 
 export const deleteTask = async (req, res) => {
+  const { id: idSession } = req.session
   const { id } = req.params
 
   const taskFind = await Task.findByIdAndDelete(id)
 
   if (!taskFind) return res.status(404).json({ error: 'Task not found' })
-  res.sendStatus(204)
+  const tasks = await Task.find({ user: idSession })
+  res.json(tasks)
 }
