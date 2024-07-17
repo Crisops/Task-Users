@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form'
 import Input from './Input'
+import { useTask } from '../hooks/useTask'
 
 function CreateTaskForm () {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
+  const { saveTask } = useTask()
+
   const onSubmit = handleSubmit((data) => {
-    console.log(data)
+    saveTask(data)
   })
 
   return (
