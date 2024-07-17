@@ -1,3 +1,5 @@
+import NavbarTask from '../components/NavbarTask'
+import { TaskProvider } from '../context/TaskContext'
 import { useAuth } from '../hooks/useAuth'
 import { Navigate, Outlet } from 'react-router-dom'
 
@@ -6,7 +8,14 @@ function RouteProtected () {
 
   if (!isAuthenticated) return <Navigate to='/login' replace />
 
-  return <Outlet />
+  return (
+    <div>
+      <TaskProvider>
+        <NavbarTask />
+        <Outlet />
+      </TaskProvider>
+    </div>
+  )
 }
 
 export default RouteProtected
